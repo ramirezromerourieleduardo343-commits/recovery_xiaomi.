@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "user-13-TP1A.220624.014-V816.0.3.0.UGQINXM-release-keys" ]
+  pull_request:
+    branches: [ "user-13-TP1A.220624.014-V816.0.3.0.UGQINXM-release-keys" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: configure
+      run: ./configure
+
+    - name: Install dependencies
+      run: make
+
+    - name: Run check
+      run: make check
+
+    - name: Run distcheck
+      run: make distcheck
